@@ -2,12 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #f4f1ea;
-  color: #1a1a1a;
-  background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+:root {
+  --bg: #f4f1ea;
+  --wine: #722f37;
 }
 
+body {
+  background-color: var(--bg);
+  color: #1a1a1a;
+  /* Текстура бумаги для эстетики коллажа */
+  background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+  margin: 0;
+}
+
+/* Принудительно отключаем темную тему */
 @media (prefers-color-scheme: dark) {
-  body { background-color: #f4f1ea !important; color: #1a1a1a !important; }
+  body {
+    background-color: var(--bg) !important;
+    color: #1a1a1a !important;
+  }
 }
