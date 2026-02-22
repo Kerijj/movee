@@ -18,7 +18,9 @@ export default function MovieArchive() {
         complete: (res) => {
           const data = res.data.map((row: any) => {
             const getVal = (names: string[]) => {
-              const key = Object.keys(row).find(k => names.some(n => k.toLowerCase().trim().includes(n.toLowerCase())));
+              const key = Object.keys(row).find(k => 
+                names.some(n => k.toLowerCase().trim().includes(n.toLowerCase()))
+              );
               return key ? row[key] : "";
             };
             return {
@@ -55,12 +57,18 @@ export default function MovieArchive() {
       const matchesGenre = selectedGenre === 'ВСЕ ЖАНРЫ' || 
         (m.genre && m.genre.toUpperCase().includes(selectedGenre));
       const q = search.toLowerCase();
-      const matchesSearch = !search || m.title.toLowerCase().includes(q) || m.year.toString().includes(q);
+      const matchesSearch = !search || 
+        m.title.toLowerCase().includes(q) || 
+        m.year.toString().includes(q);
       return matchesGenre && matchesSearch;
     });
   }, [movies, selectedGenre, search]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center bg-[#FDF0E5] text-[#8E443D] font-mono tracking-widest uppercase">Загрузка коллекции...</div>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-[#FDF0E5] text-[#8E443D] font-mono tracking-widest uppercase">
+      Загрузка коллекции...
+    </div>
+  );
 
   return (
     <main className={s.container}>
@@ -76,7 +84,7 @@ export default function MovieArchive() {
             <span className={s.label}>Поиск по названию</span>
             <input 
               type="text" 
-              placeholder="Введите название..." 
+              placeholder="Введите название или год..." 
               className={s.input} 
               onChange={(e) => setSearch(e.target.value)} 
             />
@@ -101,7 +109,7 @@ export default function MovieArchive() {
                 <div className={s.cardFooter}>
                   <div className={s.badgeStack}>
                     <span className={s.badge}>{m.year} ГОД</span>
-                    <span className={s.badge}>{isWatched ? "ПРОСМОТРЕНО" : "В ОЧЕРЕДИ"}</span>
+                    <span className={s.badge}>{isWatched ? "● ПРОСМОТРЕНО" : "○ В ОЧЕРЕДИ"}</span>
                   </div>
                   <div className={s.ratingGroup}>
                     <span className={s.ratingLabel}>Rating</span>
