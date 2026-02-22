@@ -1,22 +1,27 @@
 export const s = {
-  container: "min-h-screen p-6 md:p-20 max-w-5xl mx-auto flex flex-col items-center",
-  hero: "mb-20 text-center",
-  bigTitle: "text-[18vw] md:text-[150px] font-black text-wine uppercase leading-[0.7] tracking-tighter font-display",
-  tagline: "font-mono text-[10px] uppercase tracking-[0.6em] text-wine mt-6 opacity-60",
+  container: "min-h-screen p-4 md:p-12 max-w-5xl mx-auto flex flex-col items-center",
+  hero: "mb-16 text-center",
+  bigTitle: "text-[12vw] md:text-[100px] font-black text-[#722f37] uppercase leading-[0.8] tracking-tighter font-display",
+  tagline: "font-mono text-[10px] uppercase tracking-[0.4em] text-[#722f37] mt-4 opacity-60",
   
-  // Центрированная панель управления
-  controls: "flex flex-col md:flex-row gap-10 mb-24 items-center justify-center w-full border-b border-wine/10 pb-12",
-  fieldWrapper: "flex flex-col items-center gap-3",
-  label: "font-mono text-[9px] uppercase tracking-[0.3em] text-wine/40",
-  input: "border-b border-wine/20 py-2 px-1 w-64 text-center font-mono text-sm focus:outline-none focus:border-wine text-wine placeholder:text-wine/20 transition-all",
-  select: "border-b border-wine/20 py-2 px-1 w-48 text-center font-mono text-sm focus:outline-none text-wine cursor-pointer transition-all appearance-none",
+  controls: "flex flex-col md:flex-row gap-6 mb-16 items-center justify-center w-full",
+  fieldWrapper: "flex flex-col items-center gap-2",
+  label: "font-mono text-[10px] uppercase text-[#722f37]/50",
+  input: "bg-white/50 border border-[#722f37]/20 rounded-lg py-2 px-4 w-64 text-center font-mono text-sm focus:outline-none focus:border-[#722f37] text-[#722f37]",
+  select: "bg-white/50 border border-[#722f37]/20 rounded-lg py-2 px-4 w-56 text-center font-mono text-sm focus:outline-none text-[#722f37] cursor-pointer appearance-none",
   
-  // Сетка: теперь она более сфокусирована
-  grid: "grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-32 w-full",
-  card: "relative group flex flex-col items-center text-center transition-all duration-1000",
-  genreTag: "text-[9px] font-mono uppercase tracking-[0.5em] text-wine/30 mb-4",
-  movieTitle: "text-4xl md:text-5xl font-display font-black text-wine uppercase leading-[0.85] mb-6 group-hover:italic transition-all duration-700",
-  description: "text-[14px] text-wine/70 leading-relaxed font-mono mb-8 max-w-xs italic opacity-80",
-  footer: "mt-auto pt-6 flex flex-col items-center gap-2 font-mono text-[9px] tracking-[0.2em] text-wine/40 w-full",
-  rating: "text-4xl font-display italic text-wine font-black mt-2"
+  grid: "grid grid-cols-1 md:grid-cols-2 gap-8 w-full",
+  
+  // Базовая карточка
+  card: "relative p-8 rounded-2xl transition-all duration-500 flex flex-col shadow-sm border border-[#722f37]/5",
+  cardNotWatched: "bg-white/40", // Цвет для несмотренных
+  cardWatched: "bg-[#722f37]/10 border-[#722f37]/20", // Цвет для просмотренных
+  
+  genreTag: "text-[9px] font-mono uppercase tracking-[0.2em] text-[#722f37]/40 mb-3",
+  movieTitle: "text-3xl font-display font-black text-[#722f37] uppercase leading-tight mb-4",
+  description: "text-[14px] text-gray-800 leading-relaxed font-mono mb-6 opacity-90",
+  
+  footer: "mt-auto pt-4 flex justify-between items-center border-t border-[#722f37]/10",
+  info: "font-mono text-[10px] text-[#722f37]/60",
+  rating: "text-2xl font-display italic text-[#722f37] font-black"
 };
