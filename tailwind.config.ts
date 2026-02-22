@@ -5,8 +5,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        wine: "#722f37", // Глубокий бордовый
-        paper: "#f4f1ea", // Светлый беж
+        wine: "#722f37",
+        paper: "#f4f1ea",
       },
       fontFamily: {
         display: ['Playfair Display', 'serif'],
