@@ -20,6 +20,7 @@ export default function MovieArchive() {
               const key = Object.keys(row).find(k => 
                 names.some(n => k.toLowerCase().trim() === n.toLowerCase())
               );
+              // Тщательно очищаем значение от пробелов и переносов строк
               return key ? row[key]?.toString().trim() : "";
             };
 
@@ -30,10 +31,8 @@ export default function MovieArchive() {
             const rawStatus = getVal(['смотрели', 'статус', 'status']);
             const rating = getVal(['оценка', 'рейтинг', 'rating']);
 
-            // ЛОГИКА СТАТУСА: 
-            // Если в колонке "Смотрели" пусто — значит в очереди.
-            // Если там хоть что-то написано — значит просмотрено.
-            const isWatched = rawStatus !== ""; 
+            // УСЛОВИЕ: Если в ячейке есть хоть один символ (кроме пробелов), значит "Смотрели"
+            const isWatched = rawStatus.length > 0;
 
             return { title, genre, desc, year, isWatched, rating };
           }).filter(m => m.title && m.title.length > 1);
@@ -72,39 +71,56 @@ export default function MovieArchive() {
 
   if (loading) return (
     <div style={{display:'flex', height:'100vh', alignItems:'center', justifyContent:'center', background:'#FDF0E5', color:'#8E443D', fontFamily:'monospace', letterSpacing:'4px'}}>
-      АНАЛИЗ СПИСКА...
+      СИНХРОНИЗАЦИЯ...
     </div>
   );
 
   return (
     <div style={{background: '#FDF0E5', minHeight: '100vh', padding: '40px 20px', fontFamily: 'system-ui, sans-serif', color: '#8E443D'}}>
       <style>{`
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-        .card { background: white; padding: 40px; border-radius: 50px; box-shadow: 0 4px 15px rgba(142,68,61,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; position: relative; border: none; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(142,68,61,0.12); }
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         
-        /* Цвет для ПРОСМОТРЕННЫХ (Персиковый) */
-        .card.watched { background: #F7D8C4; }
-        
-        /* Цвет для ТЕХ КТО В ОЧЕРЕДИ (Белый) */
-        .card.queue { background: #FFFFFF; }
+        /* КАРТОЧКА: БАЗОВЫЙ СТИЛЬ */
+        .card { 
+          padding: 40px; 
+          border-radius: 50px; 
+          transition: 0.4s ease; 
+          display: flex; 
+          flex-direction: column; 
+          position: relative; 
+          border: none;
+        }
 
-        .search-input { background: white; border: none; border-radius: 25px; padding: 15px 25px; width: 300px; color: #8E443D; outline: none; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .genre-select { background: #E88E7D; color: white; border: none; border-radius: 25px; padding: 15px 25px; font-weight: bold; cursor: pointer; outline: none; box-shadow: 0 4px 15px rgba(232,142,125,0.3); }
+        /* ФОН ДЛЯ ТЕХ, КТО В ОЧЕРЕДИ (Чистый белый) */
+        .card-queue { 
+          background-color: #FFFFFF !important; 
+          box-shadow: 0 10px 20px rgba(142,68,61,0.05);
+        }
+
+        /* ФОН ДЛЯ ПРОСМОТРЕННЫХ (Теплый персиковый) */
+        .card-watched { 
+          background-color: #F7D8C4 !important; 
+          box-shadow: 0 10px 20px rgba(142,68,61,0.08);
+          border: 1px solid rgba(142,68,61,0.05);
+        }
+
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(142,68,61,0.15); }
         
-        .badge { background: rgba(255,255,255,0.5); padding: 6px 14px; border-radius: 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
-        .status-tag { font-size: 10px; font-weight: 900; letter-spacing: 1.5px; margin-bottom: 12px; display: block; text-transform: uppercase; }
+        .search-input { background: white; border: none; border-radius: 25px; padding: 15px 25px; width: 300px; color: #8E443D; outline: none; }
+        .genre-select { background: #E88E7D; color: white; border: none; border-radius: 25px; padding: 15px 25px; font-weight: bold; cursor: pointer; outline: none; }
+        
+        .badge { background: rgba(255,255,255,0.6); padding: 6px 14px; border-radius: 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
         .rating-val { font-size: 64px; font-weight: 900; line-height: 0.8; font-style: italic; letter-spacing: -2px; }
       `}</style>
 
-      <div style={{maxWidth:'1100px', margin:'0 auto'}}>
+      <div style={{maxWidth:'1200px', margin:'0 auto'}}>
         <header style={{textAlign:'center', marginBottom: '60px'}}>
-          <h1 style={{fontSize: 'clamp(40px, 8vw, 85px)', fontWeight: '900', textTransform: 'uppercase', margin: '0', letterSpacing: '-5px', lineHeight: 0.9}}>Архив</h1>
-          <p style={{fontFamily:'monospace', opacity: 0.4, letterSpacing: '6px', fontSize: '10px', marginTop: '10px'}}>PERSONAL COLLECTION 2026</p>
+          <h1 style={{fontSize: 'clamp(40px, 10vw, 90px)', fontWeight: '900', textTransform: 'uppercase', margin: '0', letterSpacing: '-6px', lineHeight: 0.85}}>Архив</h1>
+          <p style={{fontFamily:'monospace', opacity: 0.4, letterSpacing: '6px', fontSize: '10px', marginTop: '15px'}}>V.3.0 // ANALYZING STATUS</p>
         </header>
 
         <div style={{display:'flex', gap:'20px', justifyContent:'center', marginBottom: '60px', flexWrap: 'wrap'}}>
-          <input type="text" placeholder="Найти фильм..." className="search-input" onChange={(e) => setSearch(e.target.value)} />
+          <input type="text" placeholder="Поиск фильма..." className="search-input" onChange={(e) => setSearch(e.target.value)} />
           <select className="genre-select" onChange={(e) => setSelectedGenre(e.target.value)}>
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -112,19 +128,29 @@ export default function MovieArchive() {
 
         <div className="movie-grid">
           {filtered.map((m, i) => (
-            <article key={i} className={`card ${m.isWatched ? 'watched' : 'queue'}`}>
-              <span className="status-tag" style={{ opacity: m.isWatched ? 1 : 0.4 }}>
-                {m.isWatched ? '● Смотрели' : '○ В очереди'}
-              </span>
-              
-              <span style={{fontSize:'10px', fontWeight:'900', opacity:0.3, letterSpacing:'2px', marginBottom:'10px'}}>{m.genre}</span>
-              <h2 style={{fontSize:'30px', fontWeight:'900', margin:'0 0 15px 0', lineHeight:'1.1'}}>{m.title}</h2>
+            <article 
+              key={i} 
+              className={`card ${m.isWatched ? 'card-watched' : 'card-queue'}`}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', alignItems: 'center' }}>
+                <span style={{fontSize:'10px', fontWeight:'900', opacity:0.3, letterSpacing:'2px'}}>{m.genre}</span>
+                <span style={{ 
+                  fontSize: '9px', 
+                  fontWeight: '900', 
+                  padding: '4px 10px', 
+                  borderRadius: '10px',
+                  background: m.isWatched ? 'rgba(142,68,61,0.1)' : 'rgba(232,142,125,0.1)',
+                  color: m.isWatched ? '#8E443D' : '#E88E7D'
+                }}>
+                  {m.isWatched ? 'СМОТРЕЛИ' : 'В ОЧЕРЕДИ'}
+                </span>
+              </div>
+
+              <h2 style={{fontSize:'32px', fontWeight:'900', margin:'0 0 15px 0', lineHeight:'1.1'}}>{m.title}</h2>
               <p style={{fontSize:'14px', opacity:0.7, lineHeight:'1.6', marginBottom:'40px', flexGrow: 1}}>{m.desc}</p>
               
               <div style={{marginTop:'auto', paddingTop:'20px', borderTop:'1px solid rgba(142,68,61,0.08)', display:'flex', justifyContent:'space-between', alignItems:'flex-end'}}>
-                <div>
-                  <span className="badge">{m.year}</span>
-                </div>
+                <span className="badge">{m.year}</span>
                 <div style={{textAlign:'right'}}>
                   <span style={{fontSize:'9px', fontWeight:'900', opacity:0.2, display:'block', marginBottom: '5px'}}>ОЦЕНКА</span>
                   <span className="rating-val">{m.rating || '—'}</span>
@@ -133,10 +159,6 @@ export default function MovieArchive() {
             </article>
           ))}
         </div>
-        
-        <footer style={{marginTop:'80px', paddingBottom:'60px', textAlign:'center', opacity:0.3, fontFamily:'monospace', fontSize:'10px', letterSpacing:'3px'}}>
-          БАЗА ДАННЫХ ОБНОВЛЕНА • {filtered.length} ФИЛЬМОВ
-        </footer>
       </div>
     </div>
   );
