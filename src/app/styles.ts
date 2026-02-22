@@ -1,31 +1,49 @@
-
 export const s = {
-  container: "min-h-screen p-4 md:p-12 max-w-4xl mx-auto flex flex-col items-center",
-  hero: "mb-16 text-center w-full",
-  bigTitle: "text-6xl md:text-8xl font-black text-[#722f37] uppercase tracking-tighter font-display",
-  tagline: "font-mono text-[10px] uppercase tracking-[0.4em] text-[#722f37] mt-2 opacity-40",
+  // 1. ОБЩИЙ КОНТЕЙНЕР (Централизация всего контента)
+  // Мы используем max-w-5xl, чтобы сайт выглядел аккуратно посередине экрана
+  container: "min-h-screen bg-[#FDF0E5] p-6 md:p-16 flex flex-col items-center",
+  wrapper: "w-full max-w-5xl mx-auto flex flex-col",
+
+  // 2. ШАПКА (Header)
+  header: "mb-16 text-center flex flex-col items-center",
+  bigTitle: "text-6xl md:text-8xl font-black text-[#8E443D] uppercase tracking-tighter leading-[0.8] mb-4",
+  tagline: "font-mono text-[11px] uppercase tracking-[0.5em] text-[#8E443D]/50",
+
+  // 3. ФИЛЬТРЫ И ПОИСК (Панель управления)
+  // Сделано в стиле "таблеток" с мягкими тенями
+  controls: "flex flex-col md:flex-row gap-4 mb-16 justify-center w-full",
+  fieldWrapper: "flex flex-col gap-2",
+  label: "font-mono text-[9px] uppercase tracking-widest text-[#8E443D]/40 ml-4",
   
-  // Панель управления (центрированная)
-  controls: "flex flex-col md:flex-row gap-6 mb-16 items-center justify-center w-full",
-  fieldWrapper: "flex flex-col items-center gap-2",
-  label: "font-mono text-[9px] uppercase tracking-widest text-[#722f37]/50",
-  input: "bg-white/80 border border-[#722f37]/10 rounded-2xl py-2 px-4 w-64 text-center font-mono text-sm focus:outline-none focus:border-[#722f37]/30 text-[#722f37] transition-all",
-  select: "bg-white/80 border border-[#722f37]/10 rounded-2xl py-2 px-4 w-56 text-center font-mono text-sm focus:outline-none text-[#722f37] cursor-pointer appearance-none transition-all",
+  input: "bg-white/60 backdrop-blur-md border-none rounded-[25px] py-4 px-8 w-full md:w-80 text-[#8E443D] text-sm focus:outline-none focus:ring-2 focus:ring-[#E88E7D]/40 placeholder:text-[#8E443D]/30 shadow-sm transition-all",
   
-  // Сетка и Карточки
-  grid: "grid grid-cols-1 md:grid-cols-2 gap-8 w-full",
-  card: "relative p-8 rounded-[40px] transition-all duration-500 flex flex-col shadow-sm border border-[#722f37]/5",
-  cardNotWatched: "bg-white/60 hover:bg-white hover:shadow-xl hover:-translate-y-1", 
-  cardWatched: "bg-[#722f37]/10 border-[#722f37]/10 hover:shadow-lg hover:-translate-y-1", 
+  select: "bg-[#E88E7D] text-white border-none rounded-[25px] py-4 px-8 w-full md:w-64 text-sm font-bold cursor-pointer shadow-lg hover:bg-[#d67b6a] transition-colors focus:outline-none appearance-none text-center",
+
+  // 4. СЕТКА (Grid)
+  // На мобильных — 1 колонка, на десктопе — 2 колонки
+  grid: "grid grid-cols-1 md:grid-cols-2 gap-10 w-full mb-20",
+
+  // 5. КАРТОЧКА (Pinterest Style)
+  // Увеличили скругление углов (rounded-[50px]) для более мягкого вида
+  card: "relative p-10 rounded-[50px] transition-all duration-500 flex flex-col shadow-sm border-none group hover:shadow-2xl hover:-translate-y-2",
+  cardNotWatched: "bg-white", 
+  cardWatched: "bg-[#F7D8C4] border border-[#8E443D]/5", // Мягкий цвет для просмотренных
+
+  // 6. ТЕКСТ В КАРТОЧКЕ
+  genreTag: "text-[11px] font-black uppercase tracking-[0.2em] text-[#8E443D]/30 mb-4 block",
+  movieTitle: "text-4xl font-black text-[#8E443D] leading-tight mb-4 group-hover:text-[#E88E7D] transition-colors",
+  description: "text-[15px] text-[#8E443D]/70 leading-relaxed font-medium mb-10 line-clamp-4",
+
+  // 7. ФУТЕР КАРТОЧКИ (Нижняя часть с рейтингом)
+  cardFooter: "mt-auto pt-8 flex justify-between items-end border-t border-[#8E443D]/5",
+  badgeStack: "flex flex-col gap-2",
+  badge: "bg-white/50 backdrop-blur-sm px-4 py-1.5 rounded-full text-[10px] font-black text-[#8E443D] w-fit shadow-sm uppercase tracking-wider",
   
-  genreTag: "text-[10px] font-bold uppercase tracking-[0.2em] text-[#722f37]/30 mb-4",
-  movieTitle: "text-3xl font-display font-black text-[#722f37] uppercase leading-tight mb-4",
-  description: "text-[14px] text-gray-800/80 leading-relaxed font-sans mb-10 opacity-90 line-clamp-4",
-  
-  // Футер карточки
-  footer: "mt-auto pt-6 flex justify-between items-end border-t border-[#722f37]/5",
-  info: "space-y-1 font-mono text-[10px] uppercase tracking-wider text-[#722f37]/50",
-  ratingBox: "text-right",
-  ratingLabel: "text-[8px] font-mono uppercase opacity-40 block mb-1",
-  ratingValue: "text-4xl font-display italic text-[#722f37] font-black"
+  ratingGroup: "text-right flex flex-col items-end",
+  ratingLabel: "text-[10px] font-black text-[#8E443D]/20 uppercase tracking-tighter mb-1",
+  ratingValue: "text-6xl font-black text-[#8E443D] italic leading-[0.8] tracking-tighter",
+
+  // 8. ФУТЕР САЙТА (Нижняя часть страницы)
+  footer: "mt-auto py-12 text-center border-t border-[#8E443D]/10 w-full",
+  footerText: "font-mono text-[10px] uppercase tracking-[0.4em] text-[#8E443D]/30"
 };
