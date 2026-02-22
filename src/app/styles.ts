@@ -1,27 +1,30 @@
 export const s = {
-  container: "min-h-screen p-4 md:p-12 max-w-5xl mx-auto flex flex-col items-center",
-  hero: "mb-16 text-center",
-  bigTitle: "text-[12vw] md:text-[100px] font-black text-[#722f37] uppercase leading-[0.8] tracking-tighter font-display",
-  tagline: "font-mono text-[10px] uppercase tracking-[0.4em] text-[#722f37] mt-4 opacity-60",
+  container: "min-h-screen p-6 md:p-12 max-w-4xl mx-auto flex flex-col items-center bg-[#fdfaf6]",
+  hero: "mb-10 text-center",
+  bigTitle: "text-5xl md:text-7xl font-black text-[#722f37] uppercase tracking-tighter font-display",
+  tagline: "font-mono text-[10px] uppercase tracking-[0.3em] text-[#722f37]/40 mt-2",
   
-  controls: "flex flex-col md:flex-row gap-6 mb-16 items-center justify-center w-full",
-  fieldWrapper: "flex flex-col items-center gap-2",
-  label: "font-mono text-[10px] uppercase text-[#722f37]/50",
-  input: "bg-white/50 border border-[#722f37]/20 rounded-lg py-2 px-4 w-64 text-center font-mono text-sm focus:outline-none focus:border-[#722f37] text-[#722f37]",
-  select: "bg-white/50 border border-[#722f37]/20 rounded-lg py-2 px-4 w-56 text-center font-mono text-sm focus:outline-none text-[#722f37] cursor-pointer appearance-none",
+  controls: "flex flex-col md:flex-row gap-4 mb-12 items-center justify-center w-full",
+  fieldWrapper: "flex flex-col gap-1",
+  label: "font-mono text-[9px] uppercase text-[#722f37]/40 ml-2",
+  input: "bg-white border border-[#722f37]/10 rounded-2xl py-2 px-4 w-64 text-[#722f37] text-sm focus:outline-none focus:ring-1 focus:ring-[#722f37]/20",
+  select: "bg-white border border-[#722f37]/10 rounded-2xl py-2 px-4 w-56 text-[#722f37] text-sm focus:outline-none cursor-pointer",
   
   grid: "grid grid-cols-1 md:grid-cols-2 gap-8 w-full",
   
-  // Базовая карточка
-  card: "relative p-8 rounded-2xl transition-all duration-500 flex flex-col shadow-sm border border-[#722f37]/5",
-  cardNotWatched: "bg-white/40", // Цвет для несмотренных
-  cardWatched: "bg-[#722f37]/10 border-[#722f37]/20", // Цвет для просмотренных
+  // КАРТОЧКА
+  card: "relative p-8 rounded-[40px] transition-all duration-300 flex flex-col shadow-sm border border-transparent",
+  cardNotWatched: "bg-white hover:shadow-md hover:scale-[1.01]", 
+  cardWatched: "bg-[#722f37]/5 border-[#722f37]/10 hover:shadow-md", 
   
-  genreTag: "text-[9px] font-mono uppercase tracking-[0.2em] text-[#722f37]/40 mb-3",
-  movieTitle: "text-3xl font-display font-black text-[#722f37] uppercase leading-tight mb-4",
-  description: "text-[14px] text-gray-800 leading-relaxed font-mono mb-6 opacity-90",
+  genreTag: "text-[10px] font-bold uppercase tracking-widest text-[#722f37]/30 mb-2",
+  movieTitle: "text-3xl font-display font-black text-[#722f37] leading-tight mb-4",
+  description: "text-sm text-gray-600 leading-relaxed font-sans mb-8",
   
-  footer: "mt-auto pt-4 flex justify-between items-center border-t border-[#722f37]/10",
-  info: "font-mono text-[10px] text-[#722f37]/60",
-  rating: "text-2xl font-display italic text-[#722f37] font-black"
+  footer: "mt-auto pt-6 flex justify-between items-end border-t border-[#722f37]/5",
+  info: "space-y-1",
+  infoItem: "font-mono text-[10px] uppercase tracking-wider text-[#722f37]/50 block",
+  
+  ratingBox: "text-right",
+  ratingStars: "text-[#722f37] font-display text-4xl font-black italic"
 };
